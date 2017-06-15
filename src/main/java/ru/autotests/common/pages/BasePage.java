@@ -17,17 +17,17 @@ import static org.junit.Assert.fail;
  */
 public class BasePage {
 
-    private int timeToLoadPage = 10;
+    private int timeToWait = 10;
 
     protected void waitForPageToLoad() {
         int seconds = 0;
-        while (!isPageLoaded() && seconds < timeToLoadPage) {
+        while (!isPageLoaded() && seconds < timeToWait) {
             waitOneSecond();
             seconds++;
         }
         if (!isPageLoaded()) {
             attachScreenshot();
-            fail(String.format("Страница не загрузилась %s за секунд", timeToLoadPage));
+            fail(String.format("Страница не загрузилась за %s секунд", timeToWait));
         }
     }
 
@@ -46,13 +46,13 @@ public class BasePage {
 
     protected void waitForElementDisplayed(WebElement element, String elemDescription) {
         int seconds = 0;
-        while (!isElementDisplayed(element) && seconds < timeToLoadPage) {
+        while (!isElementDisplayed(element) && seconds < timeToWait) {
             waitOneSecond();
             seconds++;
         }
         if (!isElementDisplayed(element)) {
             attachScreenshot();
-            fail(String.format("Элемент %s не появился %s за секунд", elemDescription, timeToLoadPage));
+            fail(String.format("Элемент %s не появился за %s секунд", elemDescription, timeToWait));
         }
     }
 
