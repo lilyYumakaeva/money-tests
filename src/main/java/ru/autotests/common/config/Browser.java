@@ -11,7 +11,7 @@ public enum Browser {
 
     private String browserName;
 
-    private Browser(String browserName) {
+    Browser(String browserName) {
         this.browserName = browserName;
     }
 
@@ -19,11 +19,6 @@ public enum Browser {
         return browserName;
     }
 
-    /**
-     * returns browser object by name
-     * @param name name of browser
-     * @return browser object
-     */
     public static Browser getByName(String name){
         for(Browser browser : values()) {
             if(browser.getBrowserName().equalsIgnoreCase(name)) {

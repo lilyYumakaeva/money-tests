@@ -12,6 +12,9 @@ public class GetProperties {
 
     String browser = "firefox";
     String baseURL = "https://money.yandex.ru/";
+    String pathToOperaDriver = "";
+    String pathToChromeDriver = "";
+    String pathToGeckoDriver = "";
 
     InputStream inputStream;
 
@@ -26,19 +29,24 @@ public class GetProperties {
             if (inputStream != null) {
                 prop.load(inputStream);
             } else {
-                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+                throw new FileNotFoundException(
+                        String.format("Property file '%s' not found in the classpath", propFileName));
             }
 
-            baseURL = prop.getProperty("baseURL");
-            browser = prop.getProperty("browser");
+            this.baseURL = prop.getProperty("baseURL");
+            this.browser = prop.getProperty("browser");
+            this.pathToChromeDriver = prop.getProperty("pathToChromeDriver");
+            this.pathToGeckoDriver = prop.getProperty("pathToGeckoDriver");
+            this.pathToOperaDriver = prop.getProperty("pathToOperaDriver");
 
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            System.out.println(String.format("Exception: %s", e));
         } finally {
             try {
                 inputStream.close();
             } catch (IOException e2) {
-                System.out.println("Can't close inputStream, exception: " + e2);
+                System.out.println(
+                        String.format("Can't close inputStream, while reading property file, exception: %s", e2));
             }
         }
     }

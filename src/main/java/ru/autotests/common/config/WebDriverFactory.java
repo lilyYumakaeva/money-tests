@@ -28,18 +28,15 @@ public class WebDriverFactory {
 
             switch (browser) {
                 case FIREFOX:
-                    //https://github.com/mozilla/geckodriver/releases
-                    System.setProperty("webdriver.gecko.driver", "/Users/lily/Downloads/geckodriver");
+                    System.setProperty("webdriver.gecko.driver", Config.PROPERTIES_FILE.pathToGeckoDriver);
                     driver = new FirefoxDriver(DesiredCapabilities.firefox());
                     break;
                 case CHROME:
-                    //https://chromedriver.storage.googleapis.com/index.html?path=2.30/
-                    System.setProperty("webdriver.chrome.driver", "/Users/lily/Downloads/chromedriver");
+                    System.setProperty("webdriver.chrome.driver",  Config.PROPERTIES_FILE.pathToChromeDriver);
                     driver = new ChromeDriver(DesiredCapabilities.chrome());
                     break;
                 case OPERA:
-                    //https://github.com/operasoftware/operachromiumdriver/releases
-                    System.setProperty("webdriver.opera.driver", "/Users/lily/Downloads/operadriver_mac64/operadriver");
+                    System.setProperty("webdriver.opera.driver", Config.PROPERTIES_FILE.pathToOperaDriver);
                     driver = new OperaDriver(DesiredCapabilities.operaBlink());
                     break;
                 default:
@@ -51,9 +48,6 @@ public class WebDriverFactory {
         }
     }
 
-    /**
-     * Finishes browser
-     */
     public static void finishBrowser() {
         if (driver != null) {
             driver.quit();
